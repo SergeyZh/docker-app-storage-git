@@ -5,23 +5,17 @@ mkdir ${LOCALPATH}
 
 put() {
     git clone ${STORDATA} ${LOCALPATH}/
-    cd ${LOCALPATH}
-    rm -rf *
-    cp -rf /app/* ${LOCALPATH}
-    git add *
-    git commit -a -m "commit ver ${VER}"
-    # Tag last commit
-    git tag -a ${VER} -m "version ${VER}"
-    git push origin ${VER}
+    cd ${LOCALPATH} && rm -rf * && cp -rf /app/* ${LOCALPATH} \
+     && git add * && git commit -a -m "commit ver ${VER}" \
+     && git tag -a ${VER} -m "version ${VER}" \
+     && git push origin ${VER}
     RETURN=`git log -1 --format=format:%H`
     echo ${RETURN}
 }
 
 get() {
     git clone ${STORDATA} ${LOCALPATH}/
-    cd ${LOCALPATH}
-    git checkout ${VER}
-    cp -rf ${LOCALPATH}/* /app/
+    cd ${LOCALPATH} && git checkout ${VER} && cp -rf ${LOCALPATH}/* /app/
 }
 
 delete() {

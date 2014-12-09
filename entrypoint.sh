@@ -3,6 +3,8 @@
 LOCALPATH=/local
 mkdir ${LOCALPATH}
 
+chmod -R go-rwx /sshconfig/*
+
 put() {
     git clone ${STORDATA} ${LOCALPATH}/
     cd ${LOCALPATH} && rm -rf * && cp -rf /app/* ${LOCALPATH} \
